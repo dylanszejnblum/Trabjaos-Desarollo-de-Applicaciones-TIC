@@ -1,0 +1,23 @@
+package paquete;
+
+public class Fraccion {
+	private int numerador ;
+	private int denominador ;
+	public Fraccion(int num , int den) {
+	  numerador = num;
+	 denominador = den;
+	  if( den < 0 || den == 0 ) {
+		  throw new IllegalArgumentException("el Denominador no puede ser menor o igual que 0");
+	  }
+	  
+	}
+	
+	public String toString(){
+		return Integer.toString(numerador)+ "/" + Integer.toString(denominador);
+	}
+	// Para simplificar busco el minimo comun divisor , lo pense asi para que tenga reusabildad mas alla de la simplificacion//
+	public int MCD(int numerador, int denominador) {
+		   if (denominador==0) return numerador;
+		   return MCD(denominador,numerador%denominador);
+		}
+}
