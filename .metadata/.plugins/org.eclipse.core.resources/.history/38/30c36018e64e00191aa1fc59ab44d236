@@ -28,7 +28,7 @@ public class Fraccion {
 	public void Simplificar(int numerador ,int denomindaor) {
 		numerador =  numerador/this.MCD(numerador, denomindaor);
 		denominador = denominador/this.MCD(numerador, denomindaor);
-		return  numerador + denominador;
+		return  numerador.t + denominador;
 	}
 	public void sumarFraccion(int numerador , int denominador ,int numerador2 , int denominador2 ) {
 		int numResult = numerador * denominador2 + numerador2 * denominador;

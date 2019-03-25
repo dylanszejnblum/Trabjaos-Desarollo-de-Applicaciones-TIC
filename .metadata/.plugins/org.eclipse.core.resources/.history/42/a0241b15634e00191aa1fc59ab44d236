@@ -25,10 +25,10 @@ public class Fraccion {
 		   if (denominador==0) return numerador;
 		   return MCD(denominador,numerador%denominador);
 		}
-	public void Simplificar(int numerador ,int denomindaor) {
+	public int Simplificar(int numerador ,int denomindaor) {
 		numerador =  numerador/this.MCD(numerador, denomindaor);
 		denominador = denominador/this.MCD(numerador, denomindaor);
-		return  numerador + denominador;
+		return numerador + "/" + denominador;
 	}
 	public void sumarFraccion(int numerador , int denominador ,int numerador2 , int denominador2 ) {
 		int numResult = numerador * denominador2 + numerador2 * denominador;
