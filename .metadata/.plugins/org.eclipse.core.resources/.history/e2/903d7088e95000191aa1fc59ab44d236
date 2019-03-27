@@ -44,20 +44,6 @@ public class Fraccion {
 		Fraccion result = new Fraccion(newNum , newDen);
 		return result.Simplificar(result);
 		}
-	public Fraccion multiplicar(Fraccion pr, Fraccion se) {
-		int newNum = pr.numerador * se.numerador;
-		int newDen = pr.denominador * se.denominador;
-		
-		Fraccion result = new Fraccion(newNum , newDen);
-		return result.Simplificar(result);
-		}
-	public Fraccion dividir(Fraccion pr, Fraccion se) {
-		int newNum = pr.numerador * se.denominador; 
-		int newDen = pr.denominador * se.numerador;
-		
-		Fraccion result = new Fraccion(newNum , newDen);
-		return result.Simplificar(result);
-		}
 		
 	
 
