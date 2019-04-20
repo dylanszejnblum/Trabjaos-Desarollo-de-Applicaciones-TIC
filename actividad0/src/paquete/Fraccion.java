@@ -1,64 +1,92 @@
 package paquete;
-
 public class Fraccion {
-	private int numerador ;
-	private int denominador ;
+	private int numerador;
+	private int denominador;
+	
 	public Fraccion(int num , int den) {
-	  numerador = num;
-	 denominador = den;
-	
-	  if( den < 0 || den == 0) {
-		  throw new IllegalArgumentException("el Denominador no puede ser menor o igual que 0");
-	  }
-	  
+		if(den==0) {
+			throw new IllegalArgumentException("El denominador no puede ser 0");
+		}
+		  numerador = num;
+		  denominador = den;
+		  //this.DenPos();
 	}
-	
+	public Fraccion(int num) {
+		this.numerador = num;
+		this.denominador = 1;
+	}
 	public String toString(){
-		return Integer.toString(numerador)+ "/" + Integer.toString(denominador);
+		return numerador + "/" + denominador;
 	
 	}
-	//Busco el minimo comun multiplo
+	//Uso euclid
 	public int MCD(int numerador, int denominador) {
 		   if (denominador==0) return numerador;
 		   return MCD(denominador,numerador%denominador);
 		}
-	public Fraccion Simplificar(Fraccion fra) {
-		int numSim = fra.numerador/ this.MCD(fra.numerador, fra.denominador);
-		int denSin = fra.denominador/ this.MCD(fra.numerador, fra.denominador);
-		Fraccion fraccionSim = new Fraccion(numSim , denSin);
-		return fraccionSim;
+	
+	 void simplificar(){ 
+		if(MCD(this.numerador , this.denominador)>1) {
+			int MaxDiv = this.MCD(this.numerador, this.denominador);
+			numerador = this.numerador/MaxDiv;
+			denominador = this.denominador/MaxDiv;
+		}
+		
+	
 	}
-	
-	public Fraccion Sumar(Fraccion pr, Fraccion se) {
-	int newNum = pr.numerador * se.denominador +  pr.denominador*se.numerador;
-	int newDen = pr.denominador * se.denominador;
-	
-	Fraccion result = new Fraccion(newNum , newDen);
-	return result.Simplificar(result);
-	}
-	
-	public Fraccion Restar(Fraccion pr, Fraccion se) {
-		int newNum = pr.numerador * se.denominador - pr.denominador*se.numerador;
-		int newDen = pr.denominador * se.denominador;
+	 
+	 void DenPos() {
+		 if(this.denominador <0|| this.numerador <0) {
+			 numerador = this.numerador/-1;
+			 denominador = this.denominador/-1; 
+		 }
+	 }
+	 
+	 Fraccion sumar(Fraccion fra) {
+		 this.DenPos();
+		 fra.DenPos();
+		 Fraccion resultado = new Fraccion(this.numerador*fra.denominador + this.denominador * fra.numerador , fra.denominador * this.denominador );
+		 resultado.simplificar();
+		 return resultado;
+	 }
+	 Fraccion restar(Fraccion fra) {
+		 Fraccion origen = new Fraccion(this.numerador,this.denominador);
+		 fra.simplificar();
+		 
+		 Fraccion resultado = new Fraccion(origen.numerador*fra.denominador- fra.numerador*  origen.denominador , fra.denominador*origen.denominador);
+		 resultado.simplificar();
+		 return resultado;
 		
-		Fraccion result = new Fraccion(newNum , newDen);
-		return result.Simplificar(result);
-		}
-	public Fraccion multiplicar(Fraccion pr, Fraccion se) {
-		int newNum = pr.numerador * se.numerador;
-		int newDen = pr.denominador * se.denominador;
+		 
+	 }
+	 Fraccion multiplicar(Fraccion fra) {
+		// this.DenPos();
+		// fra.DenPos();
+		 Fraccion resultado = new Fraccion(this.numerador*fra.numerador , this.denominador*fra.denominador );
+		 resultado.simplificar();
+		 return resultado;
+	 }
+	 Fraccion dividir(Fraccion fra) {
+		 //this.DenPos();
+		 //fra.DenPos();
+		 Fraccion resultado = new Fraccion(this.numerador*fra.denominador , this.denominador*fra.numerador );
+		 resultado.simplificar();
+		 return resultado;
+	 }	 
+	 public boolean es_igual(Fraccion otra) {
+		 Fraccion fra = new Fraccion(this.numerador , this.denominador);
+		 otra.DenPos();
+		 fra.DenPos();
+		 fra.simplificar();
+		 
+		 otra.simplificar();
 		
-		Fraccion result = new Fraccion(newNum , newDen);
-		return result.Simplificar(result);
-		}
-	public Fraccion dividir(Fraccion pr, Fraccion se) {
-		int newNum = pr.numerador * se.denominador; 
-		int newDen = pr.denominador * se.numerador;
-		
-		Fraccion result = new Fraccion(newNum , newDen);
-		return result.Simplificar(result);
-		}
-		
-	
+		 if(Math.abs(fra.numerador) == Math.abs(otra.numerador)&& Math.abs(fra.denominador) == Math.abs(otra.denominador)) {
+			 return true;
+		 }else {
+			 return false;
+		 }
+	 }
 
 }
+
