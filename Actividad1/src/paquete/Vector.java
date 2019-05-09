@@ -1,3 +1,4 @@
+package paquete;
 
 import java.lang.Math; 
 public class Vector {
