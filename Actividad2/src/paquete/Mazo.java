@@ -1,42 +1,81 @@
-package paquete;
+//package paquete;
 
 import java.util.ArrayList;
-
+import java.util.Random;
 public class Mazo {
-	private int mazoquantas = 40;
-	private int mazoLength = 0;
-	public ArrayList<Carta> cartas;
-	public Mazo(int mLeng ,ArrayList<Carta> cartis ) {
+	public static ArrayList<Carta> salidas;
+	public static ArrayList<Carta> cartas;
+	private int tope;
+	public Mazo() {
+		tope = 0;
+		salidas =   new ArrayList<Carta>();
 		cartas = new ArrayList<Carta>();
-		for(int i = 0 ; i< 12; i++) {
-			if(i!= 8 || i!= 9) {
+		for(int i = 1 ; i< 13; i++) {
+			if(i!= 8 && i!= 9){
 				cartas.add(new Carta(i ,"BASTO"));
 				cartas.add(new Carta(i ,"ESPADA"));
 				cartas.add(new Carta(i ,"COPA"));
 				cartas.add(new Carta(i ,"ORO"));
 			}
+				
+			
 		}
 	}
 	public static void swap(ArrayList<Carta> lista , int i , int j) {
-		
+		Carta l = lista.get(i);
+		lista.set(i, lista.get(j));
+		lista.set(j, l);
 	}
-	void barajar() {
-		
-	}
-	ArrayList<Carta> darCartas(int cantidad){
-		ArrayList<Carta>vuelto = new ArrayList<Carta>();
-		for(int i = 0; i<cantidad; i++) {
-			if(cantidad>mazoquantas) {
-				 throw new IllegalArgumentException("Cantidad de cartas superiror a las disponibles ");
-			}
-			vuelto.add(i, cartas.get(i));
-			mazoquantas--;
-			mazoLength++;
-			
+	void barajar(){
+		for(int i = 0 ; i < 40 ; i++){
+			int max = 39;
+			int min = 0;
+			int diff = max - min;
+			Random rn = new Random();
+			int rando= rn.nextInt(diff + 1);
+			int rando2= rn.nextInt(diff + 1);
+			Mazo.swap(Mazo.cartas, rando, rando2);
 		}
-		return vuelto;
+		 tope = 0;
 	}
-	public int cartasDisponibles() {
-		return mazoLength;
+	public Carta proxima() {
+		if(cartas.get(0)==null) {
+			 throw new IllegalArgumentException("No hay mas cartas");
+		}else {
+			Carta resultado = cartas.get(0);
+			return resultado;
+		}
+		
 	}
+	
+	void verTope() {
+		this.proxima();
+		}
+	ArrayList<Carta> darCartas(int cantidad){
+		
+		
+		if(cantidad>cartas.size() - tope) {
+			 throw new IllegalArgumentException("No cartas suficientes");
+		}
+		for(int i = tope; i<cantidad+tope; i++) {
+			salidas.add(cartas.get(i));
+		//	cartas.remove(i);
+			//Agregar variable publica con tope 
+		}
+		tope = tope+cantidad;
+		return salidas;
+	}
+	int cartasDisponibles() {
+		return cartas.size()-tope;
+	}
+	ArrayList<Carta> cualesSalieron(){
+		//ArrayList<Carta> cartasalid = new ArrayList<Carta>();
+		if(salidas.size()<0) {
+			return null ;
+		}
+		return salidas;
+	}
+	
+	
+
 }
