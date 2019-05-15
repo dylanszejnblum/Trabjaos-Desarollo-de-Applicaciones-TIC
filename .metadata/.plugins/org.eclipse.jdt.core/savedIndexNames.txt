@@ -17,7 +17,6 @@ INDEX VERSION 1.131+/Users/dylanszejnblum/Desktop/TallerDeApplicaciones/.metadat
 2044299170.index
 2038342492.index
 1613393334.index
-554649822.index
 1092222718.index
 2033435050.index
 737520867.index

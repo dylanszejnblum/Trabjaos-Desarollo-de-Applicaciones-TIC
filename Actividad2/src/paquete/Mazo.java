@@ -3,12 +3,12 @@
 import java.util.ArrayList;
 import java.util.Random;
 public class Mazo {
-	public static ArrayList<Carta> salidas;
+	public static ArrayList<Carta> salidas =   new ArrayList<Carta>();
 	public static ArrayList<Carta> cartas;
 	private int tope;
 	public Mazo() {
 		tope = 0;
-		salidas =   new ArrayList<Carta>();
+	//	salidas =   new ArrayList<Carta>();
 		cartas = new ArrayList<Carta>();
 		for(int i = 1 ; i< 13; i++) {
 			if(i!= 8 && i!= 9){
@@ -42,7 +42,10 @@ public class Mazo {
 		if(cartas.get(0)==null) {
 			 throw new IllegalArgumentException("No hay mas cartas");
 		}else {
-			Carta resultado = cartas.get(0);
+			Carta resultado = cartas.get(tope);
+			salidas.add(cartas.get(tope));
+			tope++;
+			
 			return resultado;
 		}
 		
@@ -53,7 +56,7 @@ public class Mazo {
 		}
 	ArrayList<Carta> darCartas(int cantidad){
 		
-		
+		ArrayList<Carta> salidas =   new ArrayList<Carta>();
 		if(cantidad>cartas.size() - tope) {
 			 throw new IllegalArgumentException("No cartas suficientes");
 		}
@@ -69,11 +72,14 @@ public class Mazo {
 		return cartas.size()-tope;
 	}
 	ArrayList<Carta> cualesSalieron(){
-		//ArrayList<Carta> cartasalid = new ArrayList<Carta>();
-		if(salidas.size()<0) {
+	  ArrayList<Carta> cartasalid = new ArrayList<Carta>();
+		if(tope<=0) {
 			return null ;
 		}
-		return salidas;
+		for(int i = 0 ; i <tope; i++){
+			cartasalid.add(cartas.get(i));
+		}
+		return cartasalid;
 	}
 	
 	
