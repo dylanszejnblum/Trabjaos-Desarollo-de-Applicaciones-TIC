@@ -1,4 +1,4 @@
-//package paquete;
+package paquete;
 
 public class Carta {
 	private int  numero;

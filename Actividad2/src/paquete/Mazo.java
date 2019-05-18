@@ -1,4 +1,4 @@
-//package paquete;
+package paquete;
 
 import java.util.ArrayList;
 import java.util.Random;
