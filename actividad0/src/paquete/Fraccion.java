@@ -1,4 +1,7 @@
 package paquete;
+
+import java.util.ArrayList;
+
 public class Fraccion {
 	private int numerador;
 	private int denominador;
@@ -73,6 +76,14 @@ public class Fraccion {
 		 resultado.simplificar();
 		 return resultado;
 	 }	 
+	 public static Fraccion sumatoriaDeFraccionesCuadradas(ArrayList<Fraccion> f) {
+		 Fraccion resu = new Fraccion(0,0);
+		 for(int i = 0; i<f.size();i++) {
+			 resu.numerador+=f.get(i).numerador*f.get(i).numerador;
+			 resu.numerador+=f.get(i).denominador*f.get(i).denominador;
+		 }
+		 return resu;
+	 }
 	 public boolean es_igual(Fraccion otra) {
 		 Fraccion fra = new Fraccion(this.numerador , this.denominador);
 		 otra.DenPos();

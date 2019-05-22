@@ -7,7 +7,7 @@ public class Agenda {
 	private int maxContactos = 150;
 	public Agenda() {
 		contactos = new ArrayList<Contacto>();
-		if(contactos.size() >maxContactos || contactos.size()<maxContactos) {
+		if(contactos.size() >maxContactos) {
 			 throw new IllegalArgumentException("No hay mas espacio");
 		}
 	}
