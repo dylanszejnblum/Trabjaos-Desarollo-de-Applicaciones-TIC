@@ -1,15 +1,30 @@
 package paquete;
-import java.lang.Math; 
+import java.lang.Math;
+import java.util.ArrayList; 
 public class Test {
-	public static void main (String[] args) {
-		Vector frac = new Vector (6,3);
-		Vector vec = new Vector (12,6);
-		
-		System.out.print(frac.calcularMagnitud());
-		
-		System.out.print(frac.sonParalelos(vec));
-		
-		
+	public static void foo(ArrayList<Integer> lista, int numeroSuelto){
+		numeroSuelto = 2;
+		for(int i=0; i< lista.size();i++){
+			lista.set(i, lista.get(i)*numeroSuelto);
+		}
+			
+	}
 	
+	public static void main(String[] args){
+		
+		ArrayList<Integer> lstNumeros = new ArrayList<Integer>();
+		ArrayList<Integer> lstCopiaNumeros;
+		lstNumeros.add(2);
+		lstNumeros.add(4);
+		lstNumeros.add(6);
+		lstNumeros.add(22);
+		lstCopiaNumeros = lstNumeros;
+		int numeroSuelto = 4;
+		foo(lstCopiaNumeros,numeroSuelto);
+		lstCopiaNumeros.remove(lstCopiaNumeros.indexOf(44));
+		
+		System.out.println(lstCopiaNumeros);
+		System.out.println(lstNumeros);
+		System.out.println(numeroSuelto);
 	}
 }
