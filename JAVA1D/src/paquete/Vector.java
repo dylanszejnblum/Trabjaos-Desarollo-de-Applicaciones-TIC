@@ -71,34 +71,51 @@ public class Vector {
 /*
 Importante 
 Teorico
-
-A que se denomina identidad de un objeto 
-	RTA ----Not Sure------
- 	A atributos como String Id ; que dan distincion al objeto 
- 	A la posicion en la memoria 
- 	Ejemplo 
- 	A = 1;
- 	B = A;
- PorQue decimos que el encapsulamiento ayuda a la seguridad del estado de un objeto?
- // Es la que mejor suena
-  * Protege a los atributos asociados de un objeto contra su modificacion por quien no tenga derecho a acceder a ellos
-  * Dado el siguiente codigo funcion foo que multiplica *2 y arrayList
-  * En teoria falla a menos que le agregemos un static a la funcion foo , si le agregamos un static devuelve:
-   [4, 8, 12]
-   [4, 8, 12]
-	4
-Usualmente mencionamos que existen 3 maneras de generar dependencia de un objeto a otro cual es el objetivo?
-	Not clear
+ 	A que denominamos "Identidad" de un objeto
+ 	RTA
+ 	A la posición de memoria donde esta almacenado el objeto
+ 	¿Por qué decimos que el encapsulamiento ayuda a la "seguridad" del estado de un objeto?
+ 		RTA Protege a los atributos asociados de un objeto contra su modificación por quien no tenga derecho a acceder a ellos
+ 		
+ 	Dado el siguiente código. ¿Cómo serán los print del final de main?
+public void foo(ArrayList<Integer> lista, int numeroSuelto){
+		numeroSuelto = 2;
+		for(int i=0; i< lista.size();i++){
+			lista.set(i, lista.get(i)*numeroSuelto);
+		}
+			
+	}
+	public static void main(String[] args){
+		ArrayList<Integer> lstNumeros = new ArrayList<Integer>();
+		ArrayList<Integer> lstCopiaNumeros;
+		lstNumeros.add(2);
+		lstNumeros.add(4);
+		lstNumeros.add(6);
+		lstNumeros.add(22);
+		lstCopiaNumeros = lstNumeros;
+		int numeroSuelto = 4;
+		foo(lstCopiaNumeros,numeroSuelto);
+		lstCopiaNumeros.remove(lstCopiaNumeros.indexOf(44));
+		
+		System.out.println(lstCopiaNumeros);
+		System.out.println(lstNumeros);
+		System.out.println(numeroSuelto);
+	}
+	RTA 
+	lstCopiaNumeros=lstNumeros=[4,8,12], numeroSuelto=4
+	Usualmente mencionamos que existen 3 maneras de generar dependencia de un objeto a otro. ¿Cual es el objetivo de esto?
+		RTA
+		
 	
-** Las post condiciones por contrato son 
-
-*
-*
-*Considere el codigo 
-*La funcion colocar en juego no tiene tipo de dato es una funcion y no tiene return , 
-*Igual parece que es pseudocodigo
-*Mas correcta Puede ser Que deberia crear un metodo de celda.esta vacia o no presenta un problema de encapsulamiento at at
-  */
+	Las post-condiciones dentro del diseño por contrato..
+	RTA
+		Si una post-condición no se cumple, probablemente algo hicimos mal, contrariamente a las pre-condiciones, que si no se cumplen, quien hizo algo mal es quien envió el mensaje
+		
+		
+	CODIGO CELDA JUEGO
+	RTA 
+	RESPONDE B: Alan debería crear un método llamado celda.esta_vacia() para consultar las celdas vacías independientemente de su representación interna
+*/
 
 
 
