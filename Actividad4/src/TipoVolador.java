@@ -1,8 +1,8 @@
 
 public interface TipoVolador {
-	int AlaPoderMovimiento = 10;
-	int TornadoPoder = 5;
-	void ataqueDeAla(double AlaPoderMovimiento);
-	void tornado(double TornadoPoder);
+	double pv1 = 10;
+	double pv2 = 5;
+	public abstract void ataqueDeAla(Pokemon poke);
+	public abstract  void tornado(Pokemon poke);
 	
 }

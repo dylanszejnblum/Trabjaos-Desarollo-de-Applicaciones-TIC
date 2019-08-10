@@ -1,7 +1,7 @@
 
 public interface TipoHielo{
-	
-	int p2 = 50;
-	void rayoHielo();
-	void ventisca(int p2 );
+	double ph1 = 15;
+	double ph2 = 30;
+	public abstract void rayoHielo(Pokemon poke) throws PokemonCongeladoException ;
+	public abstract void ventisca(Pokemon poke);
 }

@@ -1,8 +1,7 @@
 
 public interface TipoAgua {
-	int p1 = 15;
-	int p2 = 30;
-	
-	void surf(double p1);
-	void hidrobomba(double p2);
+	double pa1 = 15;
+	double pa2 = 30;
+	public abstract void surf(Pokemon poke);
+	public abstract  void hidrobomba(Pokemon poke);
 }

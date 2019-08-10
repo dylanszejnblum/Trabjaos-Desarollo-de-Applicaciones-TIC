@@ -7,19 +7,22 @@ public class Batalla {
 		this.jugador2 = jugador2;
 		
 	}
-	public void ataca1(int n) throws PartidaFinalizadaException {		
+	public void ataca1(int n) throws PartidaFinalizadaException, PokemonCongeladoException {		
 		
 		jugador1.atacar(jugador2, n);
-		if(jugador2.vida >=0) {
+		if(jugador2.vida ==0) {
 			throw new PartidaFinalizadaException("error");
 		}
 	}
-	public void ataca2(int n)throws PartidaFinalizadaException {
+	public void ataca2(int n)throws PartidaFinalizadaException, PokemonCongeladoException {
 		
 		jugador2.atacar(jugador1, n);
-		if(jugador1.vida >=0) {
+		if(jugador1.vida == 0) {
 			throw new PartidaFinalizadaException("error");
 		}
+	}
+	public Pokemon getGanador() {
+		return jugador1;
 	}
 	
 	

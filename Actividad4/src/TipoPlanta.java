@@ -1,8 +1,8 @@
 
 public interface TipoPlanta {
-	int p1 = 20;
-	int p2 = 35;
-	int MaxMoves = 5;
-	void latigoCepa(int p1);
-	void hojaAguda(int p2 , int MaxMoves);
+	double pp1 = 20;
+	double pp2 = 35;
+	public abstract void latigoCepa(Pokemon poke);
+	public abstract  void hojaAguda(Pokemon poke);
+	
 }
