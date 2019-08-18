@@ -7,49 +7,62 @@ public class Lapras extends Pokemon implements TipoAgua , TipoHielo {
 	}
 
 	@Override
-	public void rayoHielo(Pokemon poke) throws PokemonCongeladoException {
-		poke.congelado++;
+	public void rayoHielo(Pokemon poke){
+		poke.congenum++;
 		
 	}
 
 	@Override
 	public void ventisca(Pokemon poke) {
-		double AtaquePoke = ataque * ph2 / this.velocidad - poke.defender(ph2);
-		poke.vida = poke.vida - AtaquePoke;
+		double AtaquePoke = this.getAtaque() * 50 / this.getVelocidad() - poke.defender(this.getAtaque() * 50 / this.getVelocidad());
+		poke.restarVida(AtaquePoke);
 		
 	}
 
 	@Override
 	public void surf(Pokemon poke) {
 		// TODO Auto-generated method stub
-		double AtaquePoke = ataque * pa1 / this.velocidad - poke.defender(pa1);
-		poke.vida = poke.vida - AtaquePoke;
+		double AtaquePoke = this.getAtaque() * 15 / this.getVelocidad() - poke.defender(this.getAtaque() * 15 / this.getVelocidad());
+		poke.restarVida(AtaquePoke);
 	}
 
 	@Override
 	public void hidrobomba(Pokemon poke) {
-		double AtaquePoke = ataque * pa2 / this.velocidad - poke.defender(pa2);
-		poke.vida = poke.vida - AtaquePoke;
+		double AtaquePoke = this.getAtaque() * 30 / this.getVelocidad() - poke.defender(this.getAtaque() * 30 / this.getVelocidad() );
+		poke.restarVida(AtaquePoke);
 		
 	}
 
 	@Override
-	public void atacar(Pokemon e, int n_ataque) throws PokemonCongeladoException {
-		if(this.get_congelado() == false) {
-			switch(n_ataque) {
+	
+	public void atacar(Pokemon e, int n_ataque) {
+		if (e == null) {
+			throw new IllegalArgumentException("Pikachu me la chu pa");
+		}
+		if (n_ataque < 1 || n_ataque > 4) {
+			throw new IllegalArgumentException("atacame esta");
+			}
+		if (this.congelado() == false) {
+			switch (n_ataque) {
 			case 1:
-				rayoHielo(e);
-			case 2:
-				ventisca(e);
-			case 3:
 				surf(e);
-			case 4: 
+				break;
+			case 2:
 				hidrobomba(e);
+				break;
+			case 3: 
+				rayoHielo(e);
+				break;
+			case 4: 
+				ventisca(e);
+				break;
 			}
 		} else {
+			this.congenum++;
 			throw new PokemonCongeladoException("error");
-		}
-		
-	}
 
+		}
+	}
+		
+		
 }

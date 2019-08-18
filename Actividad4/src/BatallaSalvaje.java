@@ -1,31 +1,28 @@
-import java.util.Random;
 
-public class BatallaSalvaje extends Batalla{
 
-	public BatallaSalvaje(Pokemon jugador1, Pokemon jugador2) throws PokemonNoSalvajeException  {
+public class BatallaSalvaje extends Batalla {
+
+	public BatallaSalvaje(Pokemon jugador1, Pokemon jugador2) {
 		super(jugador1, jugador2);
-		if(jugador2.salvaje != true) {
-			throw new PokemonNoSalvajeException("error");
+		if (jugador2.salvaje == false) {
+			throw new PokemonNoSalvajeException();
 		}
-		
-		// TODO Auto-generated constructor stub
 	}
+
 	public boolean lanzar_pokeball() {
-		if(jugador2.vida>0) {
-			
-			int Probabilidad = (int) (jugador2.intentar_capturar() * 100);
-			int Total = 100;
-			int diff = Total - Probabilidad;
-			Random rn = new Random();
-			int rando= rn.nextInt(diff);
-			if(rando <= Probabilidad ) {
+		if (jugador2.vida > 0) {
+			double Probabilidad = jugador2.intentar_capturar();
+			double random = Math.random();
+			if (random >= Probabilidad) {
+				jugador2.capturar();
 				return true;
 			} else {
 				return false;
 			}
 			
+		} else {
+			throw new IllegalArgumentException("Uri papa");
 		}
-		return false;
 	}
 
 }

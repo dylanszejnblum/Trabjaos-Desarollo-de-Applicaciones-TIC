@@ -10,40 +10,49 @@ public class Entei extends Pokemon implements TipoFuego{
 	@Override
 	public void llamarada(Pokemon poke) {
 		// TODO Auto-generated method stub
-		double AtaquePoke = ataque * p1 / this.velocidad - poke.defender(p1);
-		poke.vida = poke.vida - AtaquePoke;
+		double AtaquePoke = this.getAtaque() * 20 / this.getVelocidad() - poke.defender(this.getAtaque() * 20 / this.getVelocidad());
+		poke.restarVida(AtaquePoke);
 	}
 
 
-
 	@Override
-	public void sofoco(Pokemon poke) throws AtaqueInsuficienteException {
-		double AtaquePoke = ataque * p2 / this.velocidad - poke.defender(p2);
-		poke.vida = poke.vida - AtaquePoke;
-		this.ataque = this.ataque-50;
-		if(this.ataque == 1) {
-			throw new AtaqueInsuficienteException("Error");
+	public void sofoco(Pokemon e) {
+	       // TODO Auto-generated method stub
+	       if(this.getAtaque() < 50) {
+	           throw new AtaqueInsuficienteException();
+	       }
+	       else {
+	           this.ataque = this.getAtaque() - 50;
+	       if(this.getAtaque() == 0) {
+	           this.ataque = 1;
+	       }
+	       double movment = 50;
+	       e.restarVida(this.getAtaque() * movment / this.getVelocidad() - e.defender(this.ataque * movment / this.velocidad));
+	       }
+	}
+	
+	@Override
+	public void atacar(Pokemon e, int n_ataque) {
+		if (e == null) {
+			throw new IllegalArgumentException("Pikachu me la chu pa");
 		}
-		
-		
-	}
-	@Override
-	public void atacar(Pokemon e, int n_ataque)throws PokemonCongeladoException {
-		if(this.get_congelado() == false) {
-		switch(n_ataque) {
-		case 1:
-			this.llamarada(e);
-		case 2:
-			try {
-				this.sofoco(e);
-			} catch (AtaqueInsuficienteException e1) {
-				// TODO Auto-generated catch block
-				
+		if (n_ataque < 1 || n_ataque > 2) {
+			throw new IllegalArgumentException("atacame esta");
 			}
-		}
-	}else {
-		throw new PokemonCongeladoException("error");
+		if (this.congelado() == false) {
+			switch (n_ataque) {
+			case 1:
+				llamarada(e);
+				break;
+			case 2:
+				sofoco(e);
+				break;
+			}
+		} else {
+			this.congenum++;
+			throw new PokemonCongeladoException("error");
+
 		}
 	}
-
+		
 }
