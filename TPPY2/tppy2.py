@@ -6,14 +6,13 @@
 """
 
 vocales = ['a' , 'e' , 'i' , 'o', 'u']
+vocalistico = 'aeiou'
+vocalesNegras = ['a' , 'e' , 'i' , 'o', 'u' , ' ' , '.']
 def primos(n):
    priList = []
    for i in range (2 , n+1):
        if calcPrimo(abs(i)) == True:
            priList.append(i)
-                
-   
-                
    return (priList)
         
 
@@ -63,27 +62,30 @@ def capicuba(s):
 ## Hago un foreach , donde busco la letra en vocales y en el caso de las
 ## Consonantes niego la condicion 
 def findConsonantes(s):
-    palabrita = s.replace(' ', '')
-    palabrota = palabrita.replace('.' , '')
-    palabra = [each for each in palabrota.lower() if not each in vocales] 
+    palabra = [each for each in s.lower() if not each in vocales] 
     resultado = ''.join(map(str,palabra))
     return resultado  
 
 def findVocales(s):
-    palabrita = s.replace(' ', '')
-    palabrota = palabrita.replace('.' , '')
-    palabra = [each for each in palabrota.lower() if  each in vocales] 
+    palabra = [each for each in s.lower() if each in vocalesNegras] 
     resultado = ''.join(map(str,palabra))
     return resultado  
 def cambiarVocal(s):
-    palabraCortada = list(s.lower())
-    for letra in palabraCortada:
-        for vocal in vocales:
-            if letra == vocal:
-                palabraCortada.replace(letra , vocales[vocal+1])
-                return palabraCortada
+        palabra = ''
+        stringo = s.lower()
+        for letra in stringo:
+            if letra in vocalistico:
+                i = vocalistico.index(letra) + 1
+                if (i >= 5):
+                    i = 0
+                palabra += vocalistico[i]
+            else:
+                palabra += letra
+        return palabra
                 
-    return palabraCortada
+          ## return result+=i
+            
+               
     ##return palabraCortada
 def operate_string(case , w):
     if case == 1:
@@ -98,6 +100,6 @@ def operate_string(case , w):
        return "order not found”"
    
     
-    
+
 
    
