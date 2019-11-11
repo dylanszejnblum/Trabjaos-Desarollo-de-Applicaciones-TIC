@@ -29,8 +29,15 @@ def invertir(l):
     return l[::-1]
 
 def invertir_inplace(L):
-    return L 
+    nume = len(L) -1
+    for i in range(len(L) // 2):
+        auxi = L[i]
+        L[i] = L[nume]
+        L[nume] = auxi
+        nume -=1
+    return L
 
+      
 def multiplicar(s):
     return s*50
 def _map(f,l):
