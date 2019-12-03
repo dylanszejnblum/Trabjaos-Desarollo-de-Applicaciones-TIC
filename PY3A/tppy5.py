@@ -163,7 +163,43 @@ class ListaEnlazada:
                  self.len += 1
             
      actual = actual.next
-         
+
+    def extend(self ,ListaEnlazada2):
+        if self == None:
+            return ListaEnlazada2
+        elif ListaEnlazada2 == None:
+            return self
+        headA = self.prim
+        headB = ListaEnlazada2.prim
+        cA = headA
+        cB = headB
+        contador = 0
+        while cA.next is not None:
+            contador += 1
+            cA = cA.next
+        cA.next = self.append( cB.v)
+        return headA
+    
+    def invertir_lista(self):
+        anterior = None 
+        actual = self.prim
+        sig = actual.next
+        while actual:
+            actual.next = anterior
+            
+            anterior = actual
+            actual = sig
+            if sig:
+                sig = sig.next
+                
+            self.prim = anterior
+lesto1=ListaEnlazada()
+lesto1.append('pepe')
+lesto1.append('tito')
+lesto1.append('tinchovich')
+lesto1.append('picantovich')
+lesto1.append('ake')
+lesto1.append('da') 
 
 lista=ListaEnlazada()
 lista.append('dylan')
