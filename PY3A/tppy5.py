@@ -36,6 +36,11 @@ class ListaEnlazada:
             contador += 1
             inicio = inicio.next
         return contador
+    def __iter__(self):
+        actual = self.prim
+        while actual is not None:
+            yield actual.v
+            actual = actual.next
     def __str__(self):
         lista = []
         inicio = self.prim
@@ -163,23 +168,35 @@ class ListaEnlazada:
                  self.len += 1
             
      actual = actual.next
-
-    def extend(self ,ListaEnlazada2):
-        if self == None:
-            return ListaEnlazada2
-        elif ListaEnlazada2 == None:
-            return self
-        headA = self.prim
-        headB = ListaEnlazada2.prim
-        cA = headA
-        cB = headB
-        contador = 0
-        while cA.next is not None:
-            contador += 1
-            cA = cA.next
-        cA.next = self.append( cB.v)
-        return headA
     
+    def _filter(self,f):
+        listaFinal=ListaEnlazada()
+        for l in self:
+             if f(l) == True:
+                 listaFinal.append(l)
+        return listaFinal.__str__()
+            
+    
+    def extend(self ,lista2):
+     varAuxiliar=lista2.prim
+     for i in range(lista2.len):
+         if (self.len>0):
+             self.ult.next=varAuxiliar
+             self.ult=varAuxiliar
+         else:
+            self.prim=varAuxiliar
+            self.ult=varAuxiliar
+         varAuxiliar=varAuxiliar.next
+         self.len+=1
+         
+  
+         
+         
+    def es_par(x):
+        if(x%2 == 0):
+            return True
+        else:
+            return False
     def invertir_lista(self):
         anterior = None 
         actual = self.prim
@@ -200,6 +217,14 @@ lesto1.append('tinchovich')
 lesto1.append('picantovich')
 lesto1.append('ake')
 lesto1.append('da') 
+
+lestovich=ListaEnlazada()
+lestovich.append(1)
+lestovich.append(2)
+lestovich.append(3)
+lestovich.append(4)
+lestovich.append(5)
+lestovich.append(6) 
 
 lista=ListaEnlazada()
 lista.append('dylan')
